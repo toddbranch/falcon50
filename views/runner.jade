@@ -1,0 +1,10 @@
+extends layout
+
+append content
+    h1 Runner
+    p #{runner.bib_number}
+    p #{runner.name}
+    form(action='/runners/#{runner.bib_number}', method='post')
+        input(type='hidden', name='_method', value='delete')
+        input(type='submit', value='Delete Runner')
+    a(href="/runners/#{runner.bib_number}/update") Edit

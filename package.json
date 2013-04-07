@@ -9,5 +9,12 @@
   "repository": "",
   "author": "",
   "license": "BSD",
-  "readmeFilename": "README.md"
+  "readmeFilename": "README.md",
+  "dependencies": {
+    "routes": "latest"
+    , "mysql": "latest"
+    , "jade": "latest"
+    , "mysql": "latest"
+    , "qs": "latest"
+  }
 }

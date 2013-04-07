@@ -1,0 +1,9 @@
+extends layout
+
+append content
+    h1 Runners!
+
+    ul
+    each runner in runners
+        li 
+            a(href="/runners/#{runner.bib_number}") #{runner.name}

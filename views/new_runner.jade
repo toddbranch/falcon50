@@ -1,0 +1,17 @@
+extends layout
+
+append content
+    h1 Create Runner!
+
+    div
+        form(action='/runners', method='post')
+            div(data-role='fieldcontain')
+              fieldset(data-role='controlgroup')
+                label(for='bib_number') Bib Number
+                   input(id='bib_number',type='text',value='',name='bib_number')
+            div(data-role='fieldcontain')
+              fieldset(data-role='controlgroup')
+                label(for='name') Name
+                   input(id='name',type='text',value='',name='name')
+            div(data-role='fieldcontain')   
+                  input(type='submit',value='Register Runner',data-transition='fade', data-theme='c')

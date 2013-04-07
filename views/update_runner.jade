@@ -1,0 +1,18 @@
+extends layout
+
+append content
+    h1 Update Runner
+
+    div
+        form(action='/runners/#{runner.bib_number}', method='post')
+            input(type='hidden', name='_method', value='put')
+            div(data-role='fieldcontain')
+              fieldset(data-role='controlgroup')
+                label(for='bib_number') Bib Number
+                   input(id='bib_number',type='text',value='#{runner.bib_number}',name='bib_number')
+            div(data-role='fieldcontain')
+              fieldset(data-role='controlgroup')
+                label(for='name') Name
+                   input(id='name',type='text',value='#{runner.name}',name='name')
+            div(data-role='fieldcontain')   
+                  input(type='submit',value='Update',data-transition='fade', data-theme='c')
