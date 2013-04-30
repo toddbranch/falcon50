@@ -3,7 +3,15 @@ extends layout
 append content
     h1 Runners!
 
-    ul
-    each runner in runners
-        li 
-            a(href="/runners/#{runner.bib_number}") #{runner.name}
+    table.table
+        tr
+            td
+                b Runner
+            td
+                b Bib Number
+
+        each runner in runners
+            tr
+                td
+                    a(href="/runners/#{runner.bib}") #{runner.name_first} #{runner.name_last}
+                td #{runner.bib}

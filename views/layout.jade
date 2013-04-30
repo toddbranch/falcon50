@@ -3,11 +3,16 @@ html(lang="en")
     head
         title Falcon 50
         block head
+            link(rel='stylesheet', href='/bootstrap/css/bootstrap.min.css')
     body
-        p
-            a(href='/') Home
-        p
-            a(href='/runners') Runners
-        p
-            a(href='/runners/new') Register Runner
-        block content
+        .container
+            ul.nav.nav-tabs
+                li
+                    a(href='/') Home
+                li
+                    a(href='/runners') Runners
+                li
+                    a(href='/runners/new') Register Runner
+                li
+                    a(href='/checkpoints') Checkpoints
+            block content

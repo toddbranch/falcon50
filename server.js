@@ -1,5 +1,6 @@
 var http = require('http')
-var router = require('./router')
+    , router = require('./router')
+    , file = new(require('node-static').Server)();
 
 var server = http.createServer(function(req, res)
         {
@@ -9,7 +10,7 @@ var server = http.createServer(function(req, res)
                 route.fn(req, res, route.params);
             } else 
             {
-                res.end("undefined")
+                file.serve(req, res);
             }
         })
 

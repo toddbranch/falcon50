@@ -1,0 +1,17 @@
+extends layout
+
+append content
+    h1 Checkins!
+
+    table
+        tr
+            td Time
+            td Bib Number
+            td Checkpoint
+
+        each checkin in checkins
+            tr
+                td 
+                    a(href="/checkins/#{checkin.id}") #{checkin.checkin_time}
+                td #{checkin.runner_id}
+                td #{checkin.checkpoint_id}

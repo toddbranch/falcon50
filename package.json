@@ -16,5 +16,6 @@
     , "jade": "latest"
     , "mysql": "latest"
     , "qs": "latest"
+    , "node-static": "latest"
   }
 }

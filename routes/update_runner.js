@@ -8,7 +8,7 @@ module.exports = function(req, res, params) {
     {
         case 'GET':
             var view = jade.compile(fs.readFileSync('./views/update_runner.jade'), {filename: './views/layout.jade'});
-            var queryString = "select * from runners where bib_number = " + params.runner;
+            var queryString = "select * from runners where bib= " + params.runner;
             connection.query(queryString, function(err, rows, fields) {
                 if (rows && rows[0])
                 {

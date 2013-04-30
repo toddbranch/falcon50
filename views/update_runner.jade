@@ -3,16 +3,29 @@ extends layout
 append content
     h1 Update Runner
 
+    form(action='/runners/#{runner.bib}', method='post')
+        input(type='hidden', name='_method', value='delete')
+        input(type='submit', value='Delete Runner', class='btn btn-danger')
+
     div
-        form(action='/runners/#{runner.bib_number}', method='post')
+        form(action='/runners/#{runner.bib}', method='post', class='form-horizontal')
             input(type='hidden', name='_method', value='put')
-            div(data-role='fieldcontain')
-              fieldset(data-role='controlgroup')
-                label(for='bib_number') Bib Number
-                   input(id='bib_number',type='text',value='#{runner.bib_number}',name='bib_number')
-            div(data-role='fieldcontain')
-              fieldset(data-role='controlgroup')
-                label(for='name') Name
-                   input(id='name',type='text',value='#{runner.name}',name='name')
-            div(data-role='fieldcontain')   
-                  input(type='submit',value='Update',data-transition='fade', data-theme='c')
+            .control-group
+                label(for='bib_number', class='control-label') Bib Number
+                .controls
+                    input(id='bib_number',type='text',name='bib_number', value='#{runner.bib}')
+            .control-group
+                label(for='name_first', class='control-label') First Name
+                .controls
+                    input(id='name_first',type='text', name='name_first', value='#{runner.name_first}')
+            .control-group
+                label(for='name_last', class='control-label') Last Name
+                .controls
+                    input(id='name_last',type='text', name='name_last', value='#{runner.name_last}')
+            .control-group
+                label(for='race', class='control-label') Race
+                .controls
+                    input(id='race',type='text', name='race', value='#{runner.race}')
+            .control-group
+                .controls
+                    input(type='submit', class='btn btn-primary') Update!

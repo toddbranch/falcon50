@@ -1,0 +1,13 @@
+extends layout
+
+append content
+    h1 Checkpoints!
+
+    table.table
+        tr
+            td
+                b Checkpoint Number
+        each checkpoint in checkpoints
+            tr
+                td
+                    a(href="/checkpoints/#{checkpoint.id}") Checkpoint #{checkpoint.id}

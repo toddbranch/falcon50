@@ -14,14 +14,22 @@ module.exports = function(req, res) {
             });
             break;
         case 'POST':
+            var body = "";
             req.on('data', function(chunk) {
-                var string = chunk.toString();
+                body+=chunk;
+            });
+
+            req.on('end', function() {
+                console.log('hello, world');
+                var string = body.toString();
+                console.log(string);
                 var parsed = qs.parse(string);
-                var queryString = 'insert into runners values('+parsed.bib_number+', "'+parsed.name+'")';
+                console.log(parsed);
+                var queryString = 'insert into runners values('+parsed.bib_number+', "'+parsed.name_first+'", "'+parsed.name_last+'", "'+parsed.race+'")';
 
                 connection.query(queryString, function(err, rows) {
                     if (err) throw err;
-                    res.writeHead(302, {'Location': '/runners'});
+                    res.writeHead(302, {'Location': '/runners/'+parsed.bib});
                     res.end();
                 });
             });

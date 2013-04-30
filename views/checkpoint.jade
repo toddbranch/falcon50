@@ -1,0 +1,25 @@
+extends layout
+
+append content
+    h1 Checkpoint #{checkpoint_id}
+    
+    form(action='/checkins', method='post', class='form-inline')
+        input(id='_id',type='text',value='',name='runner_id')
+        input(id='checkpoint_id',type='hidden',value='#{checkpoint_id}',name='checkpoint_id')
+        button(type='submit',class='btn btn-primary') Check In
+    table
+        tr
+            td 
+                b Runner Bib
+            td 
+                b Time
+            td
+                b Action
+        each checkin in checkins
+            tr
+                td #{checkin.runner_bib}
+                td #{checkin.checkin_time}
+                td
+                    form(action='/checkins/#{checkin.id}', method='post')
+                        input(id='_method', type='hidden', name='_method', value='delete')
+                        input(type='submit', value='Delete', class='btn btn-danger')
