@@ -1,7 +1,8 @@
 var connection = require('./database')
     , fs = require('fs')
     , jade = require('jade')
-    , qs = require('qs');
+    , qs = require('qs')
+    , sanitize = require('validator').sanitize
 
 module.exports = function(req, res) {
     switch (req.method)
@@ -17,6 +18,8 @@ module.exports = function(req, res) {
             req.on('data', function(chunk) {
                 var string = chunk.toString();
                 var parsed = qs.parse(string);
+                parsed.runner_id = sanitize(parsed.runner_id).toInt();
+                parsed.checkpoint_id = sanitize(parsed.checkpoint_id).toInt();
                 var queryString = 'insert into checkins (runner_bib, checkpoint_id, checkin_time) values('
                                      +parsed.runner_id + ',' + parsed.checkpoint_id +', curtime())';
                 connection.query(queryString, function(err, rows) {

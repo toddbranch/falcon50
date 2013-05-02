@@ -1,7 +1,8 @@
 var connection = require('./database')
     , fs = require('fs')
     , jade = require('jade')
-    , qs = require('qs');
+    , qs = require('qs')
+    , sanitize = require('validator').sanitize
 
 module.exports = function(req, res) {
     switch (req.method)
@@ -20,12 +21,9 @@ module.exports = function(req, res) {
             });
 
             req.on('end', function() {
-                console.log('hello, world');
                 var string = body.toString();
-                console.log(string);
                 var parsed = qs.parse(string);
-                console.log(parsed);
-                var queryString = 'insert into runners values('+parsed.bib_number+', "'+parsed.name_first+'", "'+parsed.name_last+'", "'+parsed.race+'")';
+                var queryString = 'insert into runners values('+sanitize(parsed.bib_number).toInt()+', "'+sanitize(parsed.name_first).xss()+'", "'+sanitize(parsed.name_last).xss()+'", "'+sanitize(parsed.race).xss()+'")';
 
                 connection.query(queryString, function(err, rows) {
                     if (err) throw err;
