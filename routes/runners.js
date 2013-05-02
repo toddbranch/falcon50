@@ -3,6 +3,7 @@ var connection = require('./database')
     , jade = require('jade')
     , qs = require('qs')
     , sanitize = require('validator').sanitize
+    , check = require('validator').check
 
 module.exports = function(req, res) {
     switch (req.method)
@@ -23,11 +24,13 @@ module.exports = function(req, res) {
             req.on('end', function() {
                 var string = body.toString();
                 var parsed = qs.parse(string);
-                var queryString = 'insert into runners values('+sanitize(parsed.bib_number).toInt()+', "'+sanitize(parsed.name_first).xss()+'", "'+sanitize(parsed.name_last).xss()+'", "'+sanitize(parsed.race).xss()+'")';
 
+                var queryString = 'insert into runners (bib, name_first, name_last, race) values('+sanitize(parsed.bib_number).toInt()+', "'+sanitize(parsed.name_first).xss()+'", "'+sanitize(parsed.name_last).xss()+'", "'+sanitize(parsed.race).xss()+'")';
+
+                console.log(queryString);
                 connection.query(queryString, function(err, rows) {
                     if (err) throw err;
-                    res.writeHead(302, {'Location': '/runners/'+parsed.bib});
+                    res.writeHead(302, {'Location': '/runners/'+sanitize(parsed.bib_number).toInt()});
                     res.end();
                 });
             });
