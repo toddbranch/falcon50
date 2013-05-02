@@ -5,6 +5,7 @@ create table runners (
     name_first varchar(100),
     name_last varchar(100),
     race varchar(100),
+    registered bool default 0,
     primary key(bib)
 );
 

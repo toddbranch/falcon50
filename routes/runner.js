@@ -32,7 +32,6 @@ module.exports = function(req, res, params) {
                     });
                 } else if (parsed._method == 'put')
                 {
-                    console.log('here!', parsed.name, parsed.bib);
                     var queryString = "update runners set race = '"+parsed.race+"', name_last = '"+parsed.name_last+"', name_first = '" + parsed.name_first + "', bib = " + parsed.bib_number + " where bib = " + params.runner;
                     console.log(queryString);
                     connection.query(queryString, function(err, rows, fields) {

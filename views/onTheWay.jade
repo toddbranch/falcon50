@@ -1,0 +1,16 @@
+extends layout
+
+append content
+    h1 Checkpoint #{checkpoint_id}
+    h3 On The Way
+    a(href='/checkpoints/#{checkpoint_id}') Checkpoint #{checkpoint_id}
+    table.table
+        tr
+            td 
+                b Runner Bib
+            td 
+                b Time Of Last Checkin
+        each runner in runners
+            tr
+                td #{runner.runner_bib}
+                td #{runner.checkin_time}

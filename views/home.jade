@@ -3,3 +3,24 @@ extends layout
 append content
     h1 Falcon 50
 
+    div
+        form(action='/runners/search', method='get', class='form-horizontal')
+            .control-group
+                label(for='bib_number', class='control-label') Bib Number
+                .controls
+                    input(id='bib_number',type='text',name='bib_number', value='')
+            .control-group
+                label(for='name_first', class='control-label') First Name
+                .controls
+                    input(id='name_first',type='text', name='name_first', value='')
+            .control-group
+                label(for='name_last', class='control-label') Last Name
+                .controls
+                    input(id='name_last',type='text', name='name_last', value='')
+            .control-group
+                label(for='race', class='control-label') Race
+                .controls
+                    input(id='race',type='text', name='race', value='')
+            .control-group
+                .controls
+                    input(type='submit', class='btn btn-primary') Search!

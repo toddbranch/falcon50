@@ -2,12 +2,13 @@ extends layout
 
 append content
     h1 Checkpoint #{checkpoint_id}
+    a(href='/checkpoints/#{checkpoint_id}/onTheWay') On The Way
     
     form(action='/checkins', method='post', class='form-inline')
         input(id='_id',type='text',value='',name='runner_id')
         input(id='checkpoint_id',type='hidden',value='#{checkpoint_id}',name='checkpoint_id')
         button(type='submit',class='btn btn-primary') Check In
-    table
+    table.table
         tr
             td 
                 b Runner Bib
